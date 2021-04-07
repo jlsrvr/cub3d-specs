@@ -7,7 +7,7 @@ TEST_TYPE=$3
 compilation () {
 	OPTION=$1
 	printf "\n\n\e[1m\e[36m<==== Compiling ====>\n\n\e[0m"
-	gcc -Wextra -Wall $OPTION -L../srcs/libft/ -lft -I. -I../srcs/headers ${FUNCTION_NAME}_specs.c utils.c ../srcs/parser/${FUNCTION_NAME}.c -o ${FUNCTION_NAME}_spec
+	gcc -Wextra -Wall $OPTION -L../srcs/libft/ -lft -I. -I../srcs/headers ${FUNCTION_NAME}_specs.c utils.c ../srcs/parser/parser_utils.c ../srcs/parser/${FUNCTION_NAME}.c -o ${FUNCTION_NAME}_spec
 }
 
 run_tests () {
@@ -39,4 +39,4 @@ else
 		run_tests
 	fi
 fi
-rm -rf texture_parser_spec texture_parser_spec.dSYM/
+rm -rf ${FUNCTION_NAME}_spec ${FUNCTION_NAME}_spec.dSYM/
