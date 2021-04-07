@@ -45,6 +45,15 @@ static void	check_result(t_des result, t_des expected, int *sucess, int *failure
 	fail == 0 ? (*sucess)++ : (*failure)++;
 }
 
+void free_result(t_des description)
+{
+	free(description.no_path);
+	free(description.ea_path);
+	free(description.so_path);
+	free(description.we_path);
+	free(description.s_path);
+}
+
 static void texture_parser_test(char *describe, int returned, t_des current_des, t_des expected, char **line, int *sucess, int *failure)
 {
 	int response;
@@ -59,6 +68,7 @@ static void texture_parser_test(char *describe, int returned, t_des current_des,
 		printf("Expected = [%d]\n", returned);
 		printf("Got      = [%d]\n", response);
 	}
+	free_result(current_des);
 	return ;
 }
 
@@ -70,10 +80,33 @@ int main(void)
 	int sucess = 0;
 	int failure = 0;
 
-	line = "NO ./a/file_path.c";
 	current_des = texture_t_des_filler(NULL, NULL, NULL, NULL, NULL);
+	line = "NO ./a/file_path.c";
 	expected = texture_t_des_filler("./a/file_path.c", NULL, NULL, NULL, NULL);
 	texture_parser_test("Simple northern texture", 0, current_des, expected, &line, &sucess, &failure);
+	line = "EA ./a/file_path.c";
+	expected = texture_t_des_filler(NULL, "./a/file_path.c", NULL, NULL, NULL);
+	texture_parser_test("Simple eastern texture", 0, current_des, expected, &line, &sucess, &failure);
+	line = "SO ./a/file_path.c";
+	expected = texture_t_des_filler(NULL, NULL, "./a/file_path.c", NULL, NULL);
+	texture_parser_test("Simple southern texture", 0, current_des, expected, &line, &sucess, &failure);
+	line = "WE ./a/file_path.c";
+	expected = texture_t_des_filler(NULL, NULL, NULL, "./a/file_path.c", NULL);
+	texture_parser_test("Simple western texture", 0, current_des, expected, &line, &sucess, &failure);
+	line = "S ./a/file_path.c";
+	expected = texture_t_des_filler(NULL, NULL, NULL, NULL, "./a/file_path.c");
+	texture_parser_test("Simple sprite texture", 0, current_des, expected, &line, &sucess, &failure);
+	line = "S    	 ./a/file_path.c";
+	expected = texture_t_des_filler(NULL, NULL, NULL, NULL, "./a/file_path.c");
+	texture_parser_test("Multiple spaces between identifier and path", 0, current_des, expected, &line, &sucess, &failure);
+	line = "    WE ./a/file_path.c";
+	expected = texture_t_des_filler(NULL, NULL, NULL, "./a/file_path.c", NULL);
+	texture_parser_test("Spaces before the identifier", 0, current_des, expected, &line, &sucess, &failure);
+	current_des = texture_t_des_filler("./a/file_path.c", NULL, NULL, NULL, NULL);
+	line = "NO ./a/file_path.c";
+	expected = texture_t_des_filler("|duplicate|", NULL, NULL, NULL, NULL);
+	texture_parser_test("Path has already been filled", 1, current_des, expected, &line, &sucess, &failure);
+
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
 }
