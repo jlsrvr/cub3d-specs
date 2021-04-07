@@ -1,32 +1,39 @@
 #!/bin/bash
 
+LIB_PATH=$1
+FUNCTION_NAME=$2
+TEST_TYPE=$3
+
 compilation () {
+	OPTION=$1
 	printf "\n\n\e[1m\e[36m<==== Compiling ====>\n\n\e[0m"
-	gcc -Wextra -Wall $1 -L../srcs/libft/ -lft -I. -I../srcs/headers texture_parser_specs.c utils.c ../srcs/parser/texture_parser.c -o texture_parser_spec
+	gcc -Wextra -Wall $OPTION -L../srcs/libft/ -lft -I. -I../srcs/headers ${FUNCTION_NAME}_specs.c utils.c ../srcs/parser/${FUNCTION_NAME}.c -o ${FUNCTION_NAME}_spec
 }
 
 run_tests () {
-	$1 ./texture_parser_spec
+	OPTION=$1
+	$OPTION ./${FUNCTION_NAME}_spec
 }
 
+clear
 printf "\e[1m\e[36m<==== Library ====>\n\n\e[0m"
-make libft.a -C $1/libft/
-if [ -z $2 ]
+make libft.a -C ${LIB_PATH}/libft/
+if [ -z $TEST_TYPE ]
 then
 	compilation
 	printf "\n\n\e[1m\e[36m<==== Basic tests====>\n\n\e[0m"
 	run_tests
 else
-	if [ $2 = "sanitize" ]; then
+	if [ $TEST_TYPE = "sanitize" ]; then
 		compilation "-fsanitize=address"
 		printf "\n\n\e[1m\e[36m<==== Sanitised tests====>\n\n\e[0m"
 		run_tests
-	elif [ $2 = "valgrind" ]; then
+	elif [ $TEST_TYPE = "valgrind" ]; then
 		compilation
 		printf "\n\n\e[1m\e[36m<==== Valgrind tests====>\n\n\e[0m"
 		run_tests "valgrind  --leak-check=full"
 	else
-		echo $2 not an option!!!
+		echo $TEST_TYPE not an option!!!
 		compilation
 		printf "\n\n\e[1m\e[36m<==== Basic tests====>\n\n\e[0m"
 		run_tests
