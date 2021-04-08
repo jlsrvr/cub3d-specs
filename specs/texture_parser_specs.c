@@ -99,9 +99,6 @@ int main(void)
 	line = "S    	 ./a/file_path.c";
 	expected = texture_t_des_filler(NULL, NULL, NULL, NULL, "./a/file_path.c");
 	texture_parser_test("Multiple spaces between identifier and path", 0, current_des, expected, &line, &sucess, &failure);
-	line = "    WE ./a/file_path.c";
-	expected = texture_t_des_filler(NULL, NULL, NULL, "./a/file_path.c", NULL);
-	texture_parser_test("Spaces before the identifier", 0, current_des, expected, &line, &sucess, &failure);
 	current_des = texture_t_des_filler("./a/file_path.c", NULL, NULL, NULL, NULL);
 	line = "NO ./a/file_path.c";
 	expected = texture_t_des_filler("|duplicate|", NULL, NULL, NULL, NULL);
