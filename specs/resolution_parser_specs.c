@@ -104,6 +104,9 @@ int main(void)
 	line = "R    1900    1800";
 	expected = resolution_t_des_filler(1900, 1800);
 	resolution_parser_test("Simple resolution with extra spaces", 0, current_des, expected, &line, &sucess, &failure);
+	line = "R  \t 1900    1800";
+	expected = resolution_t_des_filler(1900, 1800);
+	resolution_parser_test("Resolution with extra spaces and a tab", 0, current_des, expected, &line, &sucess, &failure);
 
 
 	current_des = resolution_t_des_filler(1,1);
