@@ -103,6 +103,9 @@ int main(void)
 	line = "F ,, 255 255 255";
 	expected = colour_t_des_filler(-1, -2);
 	colour_parser_test("Two commas in the wrong place", 1, current_des, expected, &line, &sucess, &failure);
+	line = "F 255,255,,255";
+	expected = colour_t_des_filler(-1, -2);
+	colour_parser_test("Three commas in the wrong place but still three words", 1, current_des, expected, &line, &sucess, &failure);
 	line = "F , , 255 255 255";
 	expected = colour_t_des_filler(-1, -2);
 	colour_parser_test("Two commas in the wrong place but that split into three words", 1, current_des, expected, &line, &sucess, &failure);
