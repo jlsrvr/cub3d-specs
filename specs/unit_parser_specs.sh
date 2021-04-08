@@ -1,8 +1,7 @@
 #!/bin/bash
 
-LIB_PATH=$1
-FUNCTION_NAME=$2
-TEST_TYPE=$3
+FUNCTION_NAME=$1
+TEST_TYPE=$2
 
 compilation () {
 	OPTION=$1
@@ -17,7 +16,7 @@ run_tests () {
 
 clear
 printf "\e[1m\e[36m<==== Library ====>\n\n\e[0m"
-make libft.a -C ${LIB_PATH}/libft/
+make libft.a -C ../srcs/libft/
 if [ -z $TEST_TYPE ]
 then
 	compilation

@@ -3,6 +3,7 @@
 
 # include <stdio.h>
 # include <string.h>
+# include <fcntl.h>
 # include "cub3d.h"
 # include "parser.h"
 
