@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEST_TYPE=$3
+TEST_TYPE=$1
 
 compilation () {
 	OPTION=$1

@@ -89,7 +89,6 @@ static void texture_parser_test(char *describe, char *path, int returned, t_des 
 
 	description = NULL;
 	fd = open(path, O_RDONLY);
-	printf("HERE %d\n", fd);
 	response = cub_parser(fd, &description);
 	if (response == returned)
 		check_result(description, expected, sucess, failure);
