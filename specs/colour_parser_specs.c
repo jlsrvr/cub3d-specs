@@ -65,7 +65,13 @@ int main(void)
 	line = "F 255, 255, 255,";
 	expected = colour_t_des_filler(0xFFFFFF, 0);
 	colour_parser_test("Extra comma after numbers but nothing after", 0, current_des, expected, &line, &sucess, &failure);
-	printf("Invalid floor :\n");
+	line = "F0,0,0";
+	expected = colour_t_des_filler(0x000000, 0);
+	colour_parser_test("White no space between identifier and rest", 0, current_des, expected, &line, &sucess, &failure);
+	line = "F 0,0,0";
+	expected = colour_t_des_filler(0x000000, 0);
+	colour_parser_test("Simple white", 0, current_des, expected, &line, &sucess, &failure);
+	printf("\nInvalid floor :\n");
 	line = "F 255, 255AAA, 255";
 	expected = colour_t_des_filler(-1, 0);
 	colour_parser_test("Other char after number", 1, current_des, expected, &line, &sucess, &failure);
