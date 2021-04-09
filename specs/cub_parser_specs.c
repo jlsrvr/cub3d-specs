@@ -120,8 +120,7 @@ int main(void)
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000);
 	texture_parser_test("Simple well formated file", "files/well_formated.cub", 0, &expected, &sucess, &failure);
 	texture_parser_test("Well formated file shuffled", "files/well_formated_shuffled.cub", 0, &expected, &sucess, &failure);
-	texture_parser_test("Well formated with empty lines", "files/bloo.cub", 0, &expected, &sucess, &failure);
-	texture_parser_test("Well formated with lines incl. space chars", "files/blii.cub", 0, &expected, &sucess, &failure);
+	texture_parser_test("Well formated with empty lines", "files/WF_with_empty_lines.cub", 0, &expected, &sucess, &failure);
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", -1, -2);
 	texture_parser_test("Floor color wrong format", "files/invalid_floor_c.cub", 1, &expected, &sucess, &failure);
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "|duplicate|", NULL, -2, -2);
@@ -130,9 +129,10 @@ int main(void)
 	texture_parser_test("Resolution in the wrong format", "files/wrong_format_resolution.cub", 1, &expected, &sucess, &failure);
 	expected = filled_t_des(0, 0, NULL, NULL, NULL, NULL, NULL, -2, -2);
 	texture_parser_test("Wrong identifier at start", "files/unknown_identifier.cub", 1, &expected, &sucess, &failure);
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, -2);
+	texture_parser_test("Missing element", "files/missing_ceiling_c.cub", 1, &expected, &sucess, &failure);
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", -2, -2);
-	//Will be forced to check the whole line
-	texture_parser_test("Format ok, until line with a few space chars but then random", "files/blah.cub", 1, &expected, &sucess, &failure);
+	texture_parser_test("Format ok, until line with a few space chars but then random", "files/with_line_starting_space_then_random.cub", 1, &expected, &sucess, &failure);
 
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
