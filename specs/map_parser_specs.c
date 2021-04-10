@@ -109,12 +109,12 @@ int main(void)
 	map_parser_test("Second line but it contains 2 player orientations", 1, "1111", "1111", &line, &sucess, &failure);
 	line = "10E1";
 	map_parser_test("Valid second line", 0, "1111", "1111>10E1", &line, &sucess, &failure);
-
-
-	/*line = "1001";
-	expected = map_t_des_filler("1111>1001");
-	current_des = map_t_des_filler("1111");
-	map_parser_test("First line of a map", 0, current_des, expected, &line, &sucess, &failure);*/
+	line = "1001";
+	map_parser_test("Valid fifth line", 0, "1111>10E1>1001>1001", "1111>10E1>1001>1001>1001", &line, &sucess, &failure);
+	line = "";
+	map_parser_test("Empty fith line", 1, "1111>10E1>1001>1001", "1111>10E1>1001>1001", &line, &sucess, &failure);
+	line = "    \t";
+	map_parser_test("Fith line with only space chars", 1, "1111>10E1>1001>1001", "1111>10E1>1001>1001", &line, &sucess, &failure);
 
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
