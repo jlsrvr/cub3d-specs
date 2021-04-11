@@ -4,7 +4,7 @@ static t_des resolution_t_des_filler(int x_res, int y_res)
 {
 	t_des filled;
 
-	filled = filled_t_des(x_res, y_res, NULL, NULL, NULL, NULL, NULL, 0, 0);
+	filled = filled_t_des(x_res, y_res, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL);
 	return (filled);
 }
 

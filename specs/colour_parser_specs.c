@@ -4,7 +4,7 @@ static t_des colour_t_des_filler(int floor_c, int ceiling_c)
 {
 	t_des filled;
 
-	filled = filled_t_des(0, 0, NULL, NULL, NULL, NULL, NULL, floor_c, ceiling_c);
+	filled = filled_t_des(0, 0, NULL, NULL, NULL, NULL, NULL, floor_c, ceiling_c, NULL);
 	return (filled);
 }
 

@@ -4,7 +4,7 @@ static t_des texture_t_des_filler(char *no_path, char *ea_path, char *so_path, c
 {
 	t_des filled;
 
-	filled = filled_t_des(0, 0, no_path, ea_path, so_path, we_path, s_path, 0xffffff, 0x000000);
+	filled = filled_t_des(0, 0, no_path, ea_path, so_path, we_path, s_path, 0xffffff, 0x000000, NULL);
 	return (filled);
 }
 
@@ -15,15 +15,6 @@ void	print_diff(char *what, char *result, char *expected, int first)
 	printf(UNDER RED"%s :\n" RESET, what);
 	printf("Expected = [%s]\n", expected);
 	printf("Got      = [%s]\n", result);
-}
-
-static int comp_string(char *str1, char *str2)
-{
-	if (!str1 && !str2)
-		return (0);
-	if (!str1 || !str2)
-		return (1);
-	return (strcmp(str1, str2));
 }
 
 static void	check_result(t_des result, t_des expected, int *sucess, int *failure)
