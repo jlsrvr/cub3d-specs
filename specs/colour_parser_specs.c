@@ -62,9 +62,6 @@ int main(void)
 	line = "C 255, 255, 255";
 	expected = colour_t_des_filler(-2, 0xFFFFFF);
 	colour_parser_test("Simple white ceiling", 0, current_des, expected, &line, &sucess, &failure);
-	line = "F 255, 255, 255,";
-	expected = colour_t_des_filler(0xFFFFFF, -2);
-	colour_parser_test("Extra comma after numbers but nothing after", 0, current_des, expected, &line, &sucess, &failure);
 	line = "F0,0,0";
 	expected = colour_t_des_filler(0x000000, -2);
 	colour_parser_test("White no space between identifier and rest", 0, current_des, expected, &line, &sucess, &failure);
@@ -97,6 +94,9 @@ int main(void)
 	line = "F 255, ,255, 255";
 	expected = colour_t_des_filler(-1, -2);
 	colour_parser_test("Extra comma between numbers", 1, current_des, expected, &line, &sucess, &failure);
+	line = "F 255, 255, 255,";
+	expected = colour_t_des_filler(-1, -2);
+	colour_parser_test("Extra comma after numbers but nothing after", 1, current_des, expected, &line, &sucess, &failure);
 	line = "F 255, 255, 255, ";
 	expected = colour_t_des_filler(-1, -2);
 	colour_parser_test("Extra comma after numbers but something after", 1, current_des, expected, &line, &sucess, &failure);
