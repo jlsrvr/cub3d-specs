@@ -53,18 +53,21 @@ static void	check_result(t_des result, t_des expected, int *sucess, int *failure
 		(*failure)++;
 		return ;
 	}
-	while (map_res[x] && map_exp[x])
+	if (map_res && map_exp)
 	{
-		if (comp_string(map_res[x], map_exp[x]))
+		while (map_res[x] && map_exp[x])
 		{
-			printf(RED "KO\n" RESET);
-			printf(UNDER RED "Line [%d]\n" RESET, (x + 1));
-			printf("Expected = [%s]\n", map_exp[x]);
-			printf("Got      = [%s]\n", map_res[x]);
-			(*failure)++;
-			return ;
+			if (comp_string(map_res[x], map_exp[x]))
+			{
+				printf(RED "KO\n" RESET);
+				printf(UNDER RED "Line [%d]\n" RESET, (x + 1));
+				printf("Expected = [%s]\n", map_exp[x]);
+				printf("Got      = [%s]\n", map_res[x]);
+				(*failure)++;
+				return ;
+			}
+			x++;
 		}
-		x++;
 	}
 	printf(GREEN "OK\n" RESET);
 	(*sucess)++;
@@ -105,16 +108,16 @@ int main(void)
 	map_parser_test("Second line but it contains invalid number", 1, "1111", "1111", &line, &sucess, &failure);
 	line = "1111    -";
 	map_parser_test("Second line but it contains invalid char", 1, "1111", "1111", &line, &sucess, &failure);
-	line = "13EW";
+	line = "11EW";
 	map_parser_test("Second line but it contains 2 player orientations", 1, "1111", "1111", &line, &sucess, &failure);
 	line = "10E1";
 	map_parser_test("Valid second line", 0, "1111", "1111>10E1", &line, &sucess, &failure);
 	line = "1001";
 	map_parser_test("Valid fifth line", 0, "1111>10E1>1001>1001", "1111>10E1>1001>1001>1001", &line, &sucess, &failure);
-	line = "";
-	map_parser_test("Empty fith line", 1, "1111>10E1>1001>1001", "1111>10E1>1001>1001", &line, &sucess, &failure);
-	line = "    \t";
-	map_parser_test("Fith line with only space chars", 1, "1111>10E1>1001>1001", "1111>10E1>1001>1001", &line, &sucess, &failure);
+	line = "11EW";
+	map_parser_test("First line but it contains 2 player orientations", 1, NULL, NULL, &line, &sucess, &failure);
+	line = "10E1 000 1    00000 0000 00 ";
+	map_parser_test("Valid long second line", 0, "1111", "1111>10E1 000 1    00000 0000 00 ", &line, &sucess, &failure);
 
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
