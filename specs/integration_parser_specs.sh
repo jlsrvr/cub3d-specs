@@ -26,6 +26,10 @@ else
 		compilation "-fsanitize=address"
 		printf "\n\n\e[1m\e[36m<==== Sanitised tests====>\n\n\e[0m"
 		run_tests
+	elif [ $TEST_TYPE = "debug" ]; then
+		compilation "-g"
+		printf "\n\n\e[1m\e[36m<==== Debugging mode with lldb====>\n\n > b name_of_break_point then > r to run program then > gui to access interface\n\e[0m"
+		run_tests "lldb"
 	elif [ $TEST_TYPE = "valgrind" ]; then
 		compilation
 		printf "\n\n\e[1m\e[36m<==== Valgrind tests====>\n\n\e[0m"
