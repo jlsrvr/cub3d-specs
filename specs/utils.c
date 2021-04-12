@@ -26,14 +26,10 @@ int comp_string(char *str1, char *str2)
 	return (strcmp(str1, str2));
 }
 
-void	check_map(t_des result, t_des expected, int *sucess, int *failure)
+void	check_map(char **map_res, char **map_exp, int *sucess, int *failure)
 {
 	int x = 0;
-	char **map_res;
-	char **map_exp;
 
-	map_res = result.map;
-	map_exp = expected.map;
 	if ((!map_res && map_exp) || (map_res && !map_exp))
 	{
 		printf(RED "KO\n" RESET);

@@ -28,7 +28,7 @@ static void map_parser_test(char *describe, int returned, char *current, char *e
 	printf("<==== %s ====>\n", describe);
 	response = map_parser(line, &current_des);
 	if (response == returned)
-		check_map(current_des, expected_des, sucess, failure);
+		check_map(current_des.map, expected_des.map, sucess, failure);
 	else
 	{
 		printf(RED "KO\n" RESET);

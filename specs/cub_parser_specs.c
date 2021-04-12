@@ -59,7 +59,7 @@ static void	check_result(t_des *result, t_des *expected, int *sucess, int *failu
 		(*failure)++;
 		return ;
 	}
-	check_map(*result, *expected, sucess, failure);
+	check_map(result->map, expected->map, sucess, failure);
 }
 
 void free_result(t_des *description)
