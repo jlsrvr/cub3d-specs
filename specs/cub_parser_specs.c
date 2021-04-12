@@ -142,6 +142,8 @@ int main(void)
 	cub_parser_test("Complex map", "files/harder.cub", 0, &expected, &sucess, &failure);
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, NULL);
 	cub_parser_test("Simple but invalid first line of map", "files/invalid_first_line_map.cub", 1, &expected, &sucess, &failure);
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, "1111>1001>1W01>1111");
+	cub_parser_test("Simple but EOF on last line of map", "files/no_newline_after_map.cub", 0, &expected, &sucess, &failure);
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
 }
