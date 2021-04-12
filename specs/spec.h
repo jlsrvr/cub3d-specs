@@ -7,6 +7,7 @@
 # include <errno.h>
 # include "cub3d.h"
 # include "parser.h"
+# include "validator.h"
 
 
 # define RED	"\e[31m"
@@ -18,9 +19,9 @@
 # define BLINK	"\e[5m"
 # define RESET  "\e[0m"
 
-t_des filled_t_des(int x_res, int y_res, char *no_path, char *ea_path, char *so_path, char *we_path, char *s_path, int floor_c, int ceiling_c, char *map);
-int comp_string(char *str1, char *str2);
-void	check_map(t_des result, t_des expected, int *sucess, int *failure);
-void free_map(char **map);
+t_des 	filled_t_des(int x_res, int y_res, char *no_path, char *ea_path, char *so_path, char *we_path, char *s_path, int floor_c, int ceiling_c, char *map);
+int		comp_string(char *str1, char *str2);
+void	check_map(char **map_res, char **map_exp, int *sucess, int *failure);
+void 	free_map(char **map);
 
 #endif
