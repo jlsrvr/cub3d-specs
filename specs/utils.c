@@ -57,6 +57,15 @@ void	check_map(t_des result, t_des expected, int *sucess, int *failure)
 				return ;
 			}
 			x++;
+			if ((!map_res[x] && map_exp[x]) || (map_res[x] && !map_exp[x]))
+			{
+				printf(RED "KO\n" RESET);
+				printf(UNDER RED "Line [%d]\n" RESET, (x + 1));
+				printf("Expected = %s\n", (map_exp[x] ? map_exp[x] : "Nothing"));
+				printf("Got      = %s\n", (map_res[x] ? map_res[x] : "Nothing"));
+				(*failure)++;
+				return ;
+			}
 		}
 	}
 	printf(GREEN "OK\n" RESET);
