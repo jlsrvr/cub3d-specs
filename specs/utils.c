@@ -37,7 +37,7 @@ void	check_map(t_des result, t_des expected, int *sucess, int *failure)
 	if ((!map_res && map_exp) || (map_res && !map_exp))
 	{
 		printf(RED "KO\n" RESET);
-		printf(UNDER RED "Pointer :\n" RESET);
+		printf(UNDER RED "Map pointer :\n" RESET);
 		printf("Expected = %s\n", (map_exp ? "Something" : "Nothing"));
 		printf("Got      = %s\n", (map_res ? "Something" : "Nothing"));
 		(*failure)++;

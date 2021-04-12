@@ -132,7 +132,16 @@ int main(void)
 	cub_parser_test("Missing element", "files/missing_ceiling_c.cub", 1, &expected, &sucess, &failure);
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", -2, -2, NULL);
 	cub_parser_test("Format ok, until line with a few space chars but then random", "files/with_line_starting_space_then_random.cub", 1, &expected, &sucess, &failure);
-
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, "1111>1001>1W01");
+	cub_parser_test("All good except empty line in map", "files/easy_empty_line_in_map.cub", 0, &expected, &sucess, &failure);
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, "1111>1001>1W01");
+	cub_parser_test("All good except line with only space characters in map", "files/line_only_space_chars_in_map.cub", 0, &expected, &sucess, &failure);
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, "1111>1001>1W01>1111");
+	cub_parser_test("All good, empty lines after the map", "files/empty_lines_after_map.cub", 0, &expected, &sucess, &failure);
+	expected = filled_t_des(1920, 1080, "./path_to_the_north_texture", "./path_to_the_east_texture", "./path_to_the_south_texture", "./path_to_the_west_texture", "./path_to_the_sprite_texture", 0xDC6400, 0xE11E00, "    	1111111111111111111111111>    	1000000000110000000000001>    	1011000001110000002000001>    	1001000000000000000000001>111111111011000001110000000000001>100000000011000001110111111111111>11110111111111011100000010001>11110111111111011101010010001>11000000110101011100000010001>10002000000000001100000010001>10000000000000001101010010001>11000001110101011111011110N0111>11110111 1110101 101111010001>11111111 1111111 111111111111>");
+	cub_parser_test("Complex map", "files/harder.cub", 0, &expected, &sucess, &failure);
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, NULL);
+	cub_parser_test("Simple but invalid first line of map", "files/invalid_first_line_map.cub", 1, &expected, &sucess, &failure);
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
 }
