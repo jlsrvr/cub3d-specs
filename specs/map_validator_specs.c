@@ -35,10 +35,10 @@ int main(void)
 	map_validator_test("Simple validation", 0, map_in, exp_map_out, &sucess, &failure);
 	map_in = " 1111>1001>10W1>1111";
 	exp_map_out = " 1111>1001 >10W1 >1111 ";
-	map_validator_test("Simple validation and resize", 0, map_in, exp_map_out, &sucess, &failure);
+	map_validator_test("Simple validation and resize", 1, map_in, exp_map_out, &sucess, &failure);
 	map_in = " 1111>   1001>10W1        >1111";
 	exp_map_out = " 1111       >   1001     >10W1        >1111        ";
-	map_validator_test("Less simple validation and resize", 0, map_in, exp_map_out, &sucess, &failure);
+	map_validator_test("Less simple validation and resize", 1, map_in, exp_map_out, &sucess, &failure);
 	map_in = "1101>1001>10W1>1111";
 	exp_map_out = map_in;
 	map_validator_test("Simple invalid map", 1, map_in, exp_map_out, &sucess, &failure);
@@ -51,6 +51,9 @@ int main(void)
 	map_in = "11111111>10000001>10111101>101  101>101  1N1>111  111";
 	exp_map_out = map_in;
 	map_validator_test("More complex valid map", 0, map_in, exp_map_out, &sucess, &failure);
+	map_in = "        1111111111111111111111111>        1000000000110000000000001>        1011000001110000002000001>        1001000000000000000000001>111111111011000001110000000000001>100000000011000001110111111111111>11110111111111011100000010001>11110111111111011101010010001>11000000110101011100000010001>10002000000000001100000010001>10000000000000001101010010001>11000001110101011111011110N0111>11110111 1110101 101111010001>11111111 1111111 111111111111";
+	exp_map_out = "        1111111111111111111111111>        1000000000110000000000001>        1011000001110000002000001>        1001000000000000000000001>111111111011000001110000000000001>100000000011000001110111111111111>11110111111111011100000010001    >11110111111111011101010010001    >11000000110101011100000010001    >10002000000000001100000010001    >10000000000000001101010010001    >11000001110101011111011110N0111  >11110111 1110101 101111010001    >11111111 1111111 111111111111    ";
+	map_validator_test("Valid map found in pdf", 0, map_in, exp_map_out, &sucess, &failure);
 	map_in = "11111111>10000001>10011101>101  101>101  1N1>111  111";
 	exp_map_out = map_in;
 	map_validator_test("Incomplet inside wall", 1, map_in, exp_map_out, &sucess, &failure);
@@ -58,8 +61,12 @@ int main(void)
 	exp_map_out = map_in;
 	map_validator_test("Incomplet corridor", 1, map_in, exp_map_out, &sucess, &failure);
 	map_in = "11111111>10000001>10111101>101  101>101  1N1>111";
-	exp_map_out =  "11111111>10000001>10111101>101  101>101  1N1>111    ";
+	exp_map_out =  "11111111>10000001>10111101>101  101>101  1N1>111     ";
 	map_validator_test("N instead of wall", 1, map_in, exp_map_out, &sucess, &failure);
+	map_in = "1111>1001>1WW1>1111";
+	exp_map_out = "1111>1001>1WW1>1111";
+	map_validator_test("Simple map with two positions", 1, map_in, exp_map_out, &sucess, &failure);
+
 
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
