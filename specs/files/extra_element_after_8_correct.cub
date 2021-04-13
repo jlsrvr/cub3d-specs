@@ -1,0 +1,14 @@
+R 1900 1800
+NO ./a/no_path.c
+EA ./a/ea_path.c
+SO ./a/so_path.c
+WE ./a/we_path.c
+S ./a/s_path.c
+F 255,255,255
+C 0,0,0
+
+S ./a/s_path.c
+1111
+1001
+1W01
+1111
