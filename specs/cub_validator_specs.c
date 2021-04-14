@@ -73,7 +73,8 @@ static void cub_validator_test(char *describe, int returned, t_des *des_in, t_de
 	int response;
 
 	printf("<==== %s ====>\n", describe);
-	response = cub_validator(des_in);
+	if((response = cub_validator(des_in)))
+		printf("\n");
 	if (response == returned)
 		check_result(des_in, expected, sucess, failure);
 	else
