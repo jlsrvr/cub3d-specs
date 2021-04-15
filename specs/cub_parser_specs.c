@@ -181,6 +181,18 @@ int main(void)
 	describe = "Simple description but with an element after few empty lines after map";
 	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, "1111>1001>1W01>1111");
 	cub_parser_test(describe, "files/extra_element_after_map.cub", 1, &expected, &sucess, &failure);
+	describe = "Valid elements but no map";
+	expected = filled_t_des(1900, 1800, "./a/no_path.c", "./a/ea_path.c", "./a/so_path.c", "./a/we_path.c", "./a/s_path.c", 0xFFFFFF, 0x000000, NULL);
+	cub_parser_test(describe, "files/no_map.cub", 0, &expected, &sucess, &failure);
+	describe = "Empty file";
+	expected = filled_t_des(0, 0, NULL, NULL, NULL, NULL, NULL, -2, -2, NULL);
+	cub_parser_test(describe, "files/empty_file.cub", 1, &expected, &sucess, &failure);
+	describe = "File only empty lines";
+	expected = filled_t_des(0, 0, NULL, NULL, NULL, NULL, NULL, -2, -2, NULL);
+	cub_parser_test(describe, "files/empty_lines.cub", 1, &expected, &sucess, &failure);
+	describe = "File only map";
+	expected = filled_t_des(0, 0, NULL, NULL, NULL, NULL, NULL, -2, -2, NULL);
+	cub_parser_test(describe, "files/only_map.cub", 1, &expected, &sucess, &failure);
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
 }
