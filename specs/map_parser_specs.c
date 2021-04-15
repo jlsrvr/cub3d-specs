@@ -62,6 +62,8 @@ int main(void)
 	map_parser_test("First line but it contains 2 player orientations", 1, NULL, NULL, &line, &sucess, &failure);
 	line = "10E1 000 1    00000 0000 00 ";
 	map_parser_test("Valid long second line", 0, "1111", "1111>10E1 000 1    00000 0000 00 ", &line, &sucess, &failure);
+	line = "R 1900 1080";
+	map_parser_test("Weird last line", 1, "1111>1001>1W01>1111", "1111>1001>1W01>1111", &line, &sucess, &failure);
 
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
