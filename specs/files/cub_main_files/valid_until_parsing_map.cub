@@ -1,0 +1,17 @@
+R 1900 1800
+NO ./files/test.xpm
+EA ./files/test.xpm
+
+SO ./files/test.xpm
+
+WE ./files/test.xpm
+
+S ./files/test.xpm
+
+F 255,255,255
+C 0,0,0
+
+1111
+1001
+1W031
+1111
