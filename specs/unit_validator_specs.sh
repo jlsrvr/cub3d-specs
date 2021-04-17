@@ -6,7 +6,7 @@ TEST_TYPE=$2
 compilation () {
 	OPTION=$1
 	printf "\n\n\e[1m\e[36m<==== Compiling ====>\n\n\e[0m"
-	gcc -Wextra -Wall $OPTION -L../srcs/libft/ -lft -I. -I../srcs/headers ${FUNCTION_NAME}_specs.c utils.c ../srcs/cub_utils.c ../srcs/validator/validator_utils.c ../srcs/validator/${FUNCTION_NAME}.c -o ${FUNCTION_NAME}_spec
+	clang -Wextra -Wall $OPTION  -I. -I../srcs/headers ${FUNCTION_NAME}_specs.c utils.c ../srcs/cub_utils.c ../srcs/validator/validator_utils.c ../srcs/validator/${FUNCTION_NAME}.c -L../srcs/libft/ -lft -o ${FUNCTION_NAME}_spec
 }
 
 run_tests () {

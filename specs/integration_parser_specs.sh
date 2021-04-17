@@ -5,7 +5,7 @@ TEST_TYPE=$1
 compilation () {
 	OPTION=$1
 	printf "\n\n\e[1m\e[36m<==== Compiling ====>\n\n\e[0m"
-	gcc -Wextra -Wall $OPTION -L../srcs/libft/ -lft -I. -I../srcs/headers cub_parser_specs.c utils.c ../srcs/parser/*.c -o cub_parser_spec
+	clang -Wextra -Wall $OPTION -I. -I../srcs/headers cub_parser_specs.c utils.c ../srcs/parser/*.c -L../srcs/libft/ -lft -o cub_parser_spec
 }
 
 run_tests () {
