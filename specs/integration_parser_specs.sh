@@ -5,7 +5,7 @@ TEST_TYPE=$1
 compilation () {
 	OPTION=$1
 	printf "\n\n\e[1m\e[36m<==== Compiling ====>\n\n\e[0m"
-	clang -Wextra -Wall $OPTION -I. -I../srcs/headers cub_parser_specs.c utils.c ../srcs/parser/*.c -L../srcs/libft/ -lft -o cub_parser_spec
+	clang -Wextra -Wall $OPTION -I. -I../srcs/headers -I../srcs/minilibx-linux cub_parser_specs.c utils.c ../srcs/parser/*.c -L../srcs/libft/ -lft -L../srcs/minilibx-linux/ -lmlx -lXext -lX11 -lm -o cub_parser_spec
 }
 
 run_tests () {
