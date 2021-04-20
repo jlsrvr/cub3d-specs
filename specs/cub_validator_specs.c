@@ -99,7 +99,7 @@ int main(void)
 
 	describe = "Simple valid description";
 	des_in = filled_t_des(1900, 1800, "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111>1001>1W01>1111");
-	expected = filled_t_des(1900, 1800, "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111>1001>1W01>1111");
+	expected = filled_t_des(1900, 1800, "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111>1001>1001>1111");
 	cub_validator_test(describe, 0, &des_in, &expected, &sucess, &failure);
 	describe = "Invalid textures";
 	des_in = filled_t_des(1900, 1800, "./files/test.xpm", "./files/tes.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111>1001>1W01>1111");
@@ -111,7 +111,7 @@ int main(void)
 	cub_validator_test(describe, 1, &des_in, &expected, &sucess, &failure);
 	describe = "Simple valid description change map";
 	des_in = filled_t_des(1900, 1800, "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111   >1001>1W01>1111");
-	expected = filled_t_des(1900, 1800, "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111111>1001111>1W01111>1111111");
+	expected = filled_t_des(1900, 1800, "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", "./files/test.xpm", 0xFFFFFF, 0x000000, "1111111>1001111>1001111>1111111");
 	cub_validator_test(describe, 0, &des_in, &expected, &sucess, &failure);
 	printf("\t%d success out of %d tests\n", sucess, (sucess + failure));
 	return (0);
